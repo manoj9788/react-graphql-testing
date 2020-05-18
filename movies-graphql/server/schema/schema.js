@@ -4,14 +4,17 @@ const {GraphQLObjectType,
     GraphQLString, 
     GraphQLSchema,
     GraphQLID,
-    GraphQLInt
+    GraphQLInt,
+    GraphQLList
 } = graphql;
 
 var movies = [
   {name: 'The Matrix', genre: 'Sci-Fi', id: '1', actorId: '1'},
-  {name: 'Inception', genre: 'Sci-Fi', id: '2', actorId: '2'},
-  {name: 'The Conjuring', genre: 'Horror', id: '3', actorId: '3'},
-  {name: 'Wonder Woman', genre: 'Action', id: '4', actorId: '4'}
+  {name: 'John Wick', genre: 'Action', id: '2', actorId: '1'},
+  {name: 'Inception', genre: 'Sci-Fi', id: '3', actorId: '2'},  
+  {name: 'Titanic', genre: 'Romantic', id: '4', actorId: '2'},
+  {name: 'The Conjuring', genre: 'Horror', id: '5', actorId: '3'},
+  {name: 'Wonder Woman', genre: 'Action', id: '6', actorId: '4'}
 ];
 
 var actors = [
@@ -28,15 +31,15 @@ const MovieType = new GraphQLObjectType({
         name: {type: GraphQLString},
         genre: {type: GraphQLString},
         actor: {
-        type: ActorType,
-            resolve(parent, args){
-                console.log(parent)
-                //from actors array - find actor whose Id property which matches
-                //parent which is the movie(parent)
-                return _.find(actors, {id: parent.actorId})
+            type: ActorType,
+                resolve(parent, args){
+                    console.log(parent)
+                    //from actors array - find actor whose Id property which matches
+                    //parent which is the movie(parent)
+                    return _.find(actors, {id: parent.actorId});
+                }
             }
-        }
-    })
+    })  
 });
 
 
@@ -45,7 +48,15 @@ const ActorType = new GraphQLObjectType({
     fields: () => ({
         id: {type: GraphQLString},
         name: {type: GraphQLString},
-        age: {type: GraphQLInt}
+        age: {type: GraphQLInt},
+        movies: {
+            type: new GraphQLList(MovieType),
+            resolve(parent, args){
+                //filter through movies array and show us
+                //the matching fields matching ids
+                return _.filter(movies, {actorId: parent.id});
+            }
+        }
     })
 });
 
@@ -68,6 +79,18 @@ const RootQuery = new GraphQLObjectType({
             resolve(parent, args){
                 console.log(typeof(args.id));
                 return _.find(actors, {id: args.id});
+            }
+        },
+        movies: {
+            type: new GraphQLList(MovieType),
+            resolve(parent, args){
+                return movies;
+            }
+        },
+        actors: {
+            type: new GraphQLList(ActorType),
+            resolve(parent, args){
+                return actors;
             }
         }
     }
