@@ -4,13 +4,13 @@ A template project to demo testing GraphQL server and React Client
 A simple system to showcase GraphQL Testing
 
 ## Design
-![alt text](./images/arch.png)
+![alt text](./movies-graphql/images/arch.png)
 
 ## Server
 
 A repository contains a list of movies with couple of data fields using GraphQL to expose the endpoints
 
-![alt text](./images/graphiql.png)
+![alt text](./movies-graphql/images/graphiql.png)
 
 To-do
 
