@@ -1,13 +1,19 @@
 const graphql = require('graphql');
 const _ = require('lodash')
+const Movie = require('../models/movies');
+const Actor = require('../models/actors');
+
 const {GraphQLObjectType, 
     GraphQLString, 
     GraphQLSchema,
     GraphQLID,
     GraphQLInt,
+    GraphQLNonNull,
     GraphQLList
 } = graphql;
 
+
+/*
 var movies = [
   {name: 'The Matrix', genre: 'Sci-Fi', id: '1', actorId: '1'},
   {name: 'John Wick', genre: 'Action', id: '2', actorId: '1'},
@@ -23,6 +29,7 @@ var actors = [
     {name: 'Vera Farmiga', age: '46', id: '3'},
     {name: 'Gal Gadot', age: '35', id: '4'}
 ];
+*/
 
 const MovieType = new GraphQLObjectType({
     name: 'Movie',
@@ -36,7 +43,7 @@ const MovieType = new GraphQLObjectType({
                     console.log(parent)
                     //from actors array - find actor whose Id property which matches
                     //parent which is the movie(parent)
-                    return _.find(actors, {id: parent.actorId});
+                   return Actor.findById(parent.actorId);
                 }
             }
     })  
@@ -54,7 +61,7 @@ const ActorType = new GraphQLObjectType({
             resolve(parent, args){
                 //filter through movies array and show us
                 //the matching fields matching ids
-                return _.filter(movies, {actorId: parent.id});
+               return Movie.find({ actorId: parent.id});
             }
         }
     })
@@ -69,7 +76,7 @@ const RootQuery = new GraphQLObjectType({
             resolve(parent, args){
                 //Code to get data from db or datastructure
                 console.log(typeof(args.id));
-                return _.find(movies, {id: args.id});
+                return Movie.findById(args.id);
 
             }
         },
@@ -78,24 +85,62 @@ const RootQuery = new GraphQLObjectType({
             args: {id: {type: GraphQLID}},
             resolve(parent, args){
                 console.log(typeof(args.id));
-                return _.find(actors, {id: args.id});
+               return Actor.findById(args.id)
             }
         },
         movies: {
             type: new GraphQLList(MovieType),
             resolve(parent, args){
-                return movies;
+                return Movie.find();
             }
         },
         actors: {
             type: new GraphQLList(ActorType),
             resolve(parent, args){
-                return actors;
+                return Actor.find();
             }
         }
     }
 });
 
+const Mutation = new GraphQLObjectType({
+    name: 'Mutation',
+    fields: {
+        addActor: {
+            type: ActorType,
+            args:{
+                name: {type: new GraphQLNonNull(GraphQLString)},
+                age: {type: new GraphQLNonNull(GraphQLInt)}
+            },
+            resolve(parent, args){
+                let actor = new Actor({
+                    name: args.name,
+                    age: args.age
+                });
+                return actor.save();
+            }
+        },
+        addMovie: {
+            type: MovieType,
+            args:{
+                name: {type: new GraphQLNonNull(GraphQLString)},
+                genre: {type: new GraphQLNonNull(GraphQLString)},
+                actorId: {type: new GraphQLNonNull(GraphQLID)}
+            },
+            resolve(parent, args){
+                let movie = new Movie({
+                    name: args.name,
+                    genre: args.genre,
+                    actorId: args.actorId
+                });
+                return movie.save();
+            }
+        }
+    }
+
+});
+
 module.exports = new GraphQLSchema({
-    query: RootQuery
+    query: RootQuery,
+    mutation: Mutation
 });
