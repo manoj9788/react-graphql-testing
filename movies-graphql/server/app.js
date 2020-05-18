@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 const app = express();
 
 //middleWare
-mongoose.connect('mongodb+srv://test1234:test1234@cluster0-cmmr3.mongodb.net/test?retryWrites=true&w=majority');
+mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-cmmr3.mongodb.net/test?retryWrites=true&w=majority`);
 mongoose.connection.once('open', () => {
     console.log('Connected to mLab cloud database')
 })
