@@ -1,11 +1,10 @@
 const fs = require("fs");
 const path = require("path");
-const EasyGraphQLTester = require('easygraphql-tester');
-const mocha = require('mocha');
+const EasyGraphQLTester = require("easygraphql-tester");
+const mocha = require("mocha");
 const { graphql } = require("graphql");
-var expect = require('chai').expect;
-var util = require('util')
-
+var expect = require("chai").expect;
+var util = require("util");
 
 const schemaCode = fs.readFileSync(
   path.join("./schema/movies-schema.gql"),
@@ -19,8 +18,10 @@ describe("Test Schema, Queries and Mutation", () => {
     tester = new EasyGraphQLTester(schemaCode);
     //just to make sure schema comes through swiftly
     //console.log(util.inspect(tester))
+
     console.log("=========== Tests Started ===========");
   });
+
   after(() => {
     console.log("=========== Tests Finished ===========");
   });
@@ -59,7 +60,7 @@ describe("Test Schema, Queries and Mutation", () => {
         }
       }      
       `;
-      // First arg: true because the query is valid
+      // First arg: false because the query is valid
       // Second arg: query to test
       tester.test(false, query);
     });
@@ -71,7 +72,7 @@ describe("Test Schema, Queries and Mutation", () => {
     before(() => {
       tester = new EasyGraphQLTester(schemaCode);
     });
-  
+
     // ********************** TESTING SCHEMA QUERIES**********************
 
     it("Should pass with a valid movie query", () => {
@@ -90,16 +91,15 @@ describe("Test Schema, Queries and Mutation", () => {
       // Second arg: query to test
       tester.test(true, query);
     });
-  
   });
 
   describe("Test Mutations scenarios", () => {
     let tester;
-  
+
     before(() => {
       tester = new EasyGraphQLTester(schemaCode);
     });
-  
+
     // ********************** TESTING MUTATIONS **********************
 
     it("Should pass with a valid mutation query", () => {
@@ -117,7 +117,7 @@ describe("Test Schema, Queries and Mutation", () => {
       tester.test(true, mutation, {
         id: "some id",
         name: "testMovie",
-        genre: "Action"
+        genre: "Action",
       });
     });
 
@@ -131,18 +131,13 @@ describe("Test Schema, Queries and Mutation", () => {
         }
       }      
       `;
-      // First arg: true because the query is valid
+      // First arg: false because the query is Invalid
       // Second arg: query to test
       tester.test(false, mutation, {
         id: 23,
         name: "testMovie",
-        genre: "Action"
+        genre: "Action",
       });
     });
-
   });
-
 });
-
-
-  
