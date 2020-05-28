@@ -6,7 +6,7 @@ A simple system to showcase GraphQL Testing
 ## Design
 ![alt text](./movies-graphql/images/arch.png)
 
-## Server
+## Server (GraphQL)
 
 A repository contains a list of movies with couple of data fields using GraphQL to expose the endpoints
 
@@ -19,10 +19,12 @@ The most exciting part, the tests for the GraphQL endpoints are added for,
 * Queries
 * Mutation
 
+I've used `EasyGraphQLTester` node module to help us assit in testing the GraphQL endpoints
+
 All the tests can be found [here](./movies-graphql/server/test/schema.test.js)
 
-## Client
+## Client (ReactJs)
 
-A React app for us to interact with the endpoints
+A React app to interact with the GraphQL endpoints from the UI
 
 To-do
