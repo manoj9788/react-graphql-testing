@@ -15,10 +15,10 @@ A repository contains a list of movies with couple of data fields using GraphQL 
 ## Schema Type
 
 ![alt text](./movies-graphql/images/schema-type.gif)
+Thank you [GraphQL Voyager](https://apis.guru/graphql-voyager/)
 
-### Testing GraphQL
-The most exciting part, the tests for the GraphQL endpoints are added for,
-
+## Testing GraphQL
+The most exciting part, the tests for the server-side GraphQL endpoints are added for,
 * Schema
 * Queries
 * Mutation
