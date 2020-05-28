@@ -12,25 +12,6 @@ const {GraphQLObjectType,
     GraphQLList
 } = graphql;
 
-
-/*
-var movies = [
-  {name: 'The Matrix', genre: 'Sci-Fi', id: '1', actorId: '1'},
-  {name: 'John Wick', genre: 'Action', id: '2', actorId: '1'},
-  {name: 'Inception', genre: 'Sci-Fi', id: '3', actorId: '2'},  
-  {name: 'Titanic', genre: 'Romantic', id: '4', actorId: '2'},
-  {name: 'The Conjuring', genre: 'Horror', id: '5', actorId: '3'},
-  {name: 'Wonder Woman', genre: 'Action', id: '6', actorId: '4'}
-];
-
-var actors = [
-    {name: 'Keanu Reeves', age: '55', id: '1'},
-    {name: 'Leonardo DiCaprio', age: '45', id: '2'},
-    {name: 'Vera Farmiga', age: '46', id: '3'},
-    {name: 'Gal Gadot', age: '35', id: '4'}
-];
-*/
-
 const MovieType = new GraphQLObjectType({
     name: 'Movie',
     fields: () => ({
@@ -136,6 +117,7 @@ const Mutation = new GraphQLObjectType({
                 return movie.save();
             }
         }
+        //To-DO CRUD operations for Actor and Movie
     }
 
 });

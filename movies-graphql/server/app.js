@@ -2,7 +2,6 @@ const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const schema = require('./schema/schema')
 const mongoose = require('mongoose')
-
 const app = express();
 
 //middleWare
