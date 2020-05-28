@@ -12,7 +12,14 @@ A repository contains a list of movies with couple of data fields using GraphQL 
 
 ![alt text](./movies-graphql/images/graphiql.png)
 
-To-do
+### Testing GraphQL
+The most exciting part, the tests for the GraphQL endpoints are added for,
+
+* Schema
+* Queries
+* Mutation
+
+All the tests can be found [here](./movies-graphql/server/test/schema.test.js)
 
 ## Client
 
