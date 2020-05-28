@@ -12,6 +12,10 @@ A repository contains a list of movies with couple of data fields using GraphQL 
 
 ![alt text](./movies-graphql/images/graphiql.png)
 
+## Schema Type
+
+![alt text](./movies-graphql/images/schema-type.gif)
+
 ### Testing GraphQL
 The most exciting part, the tests for the GraphQL endpoints are added for,
 

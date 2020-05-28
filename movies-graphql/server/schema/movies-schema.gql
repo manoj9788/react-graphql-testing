@@ -1,37 +1,37 @@
-scalar JSON
+   scalar JSON
 
-type Query {
-   movie(id: ID): Movie
-   actor(id: ID): Actor
-   movies:[Movie]
-   actors: [Actor]
-}
+   type Query {
+      movie(id: ID): Movie
+      actor(id: ID): Actor
+      movies:[Movie]
+      actors: [Actor]
+   }
 
-type Actor {
-   id:String!
-   name:String!
-   age:Int
-   movies:Movie
-}
+   type Actor {
+      id:String!
+      name:String!
+      age:Int
+      movies:Movie
+   }
 
-type Movie {
-   id:String
-   name:String!
-   genre:String
-   actor:Actor
-}
+   type Movie {
+      id:String
+      name:String!
+      genre:String
+      actor:Actor
+   }
 
-type Movies {
-    movies:[Movie]
-}
+   type Movies {
+      movies:[Movie]
+   }
 
-type Actors {
-    actor:[Actors]
-}
+   type Actors {
+      actor:[Actors]
+   }
 
-# MUTATIONS
-type Mutation {
-  addMovie(id: String!, name: String!, genre: String): Movie
-  addActor(name: String!, age: Int!): Actor
+   # MUTATIONS
+   type Mutation {
+   addMovie(id: String!, name: String!, genre: String): Movie
+   addActor(name: String!, age: Int!): Actor
 
-}
+   }
