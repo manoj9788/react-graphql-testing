@@ -23,7 +23,7 @@ The most exciting part, the tests for the server-side GraphQL endpoints are adde
 * Queries
 * Mutation
 
-I've used `EasyGraphQLTester` node module to help us assit in testing the GraphQL endpoints
+I've used `EasyGraphQLTester` node module to help assist in testing the GraphQL endpoints
 
 All the tests can be found [here](./movies-graphql/server/test/schema.test.js)
 
