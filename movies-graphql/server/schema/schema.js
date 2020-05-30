@@ -72,13 +72,13 @@ const RootQuery = new GraphQLObjectType({
         movies: {
             type: new GraphQLList(MovieType),
             resolve(parent, args){
-                return Movie.find();
+                return Movie.find({});
             }
         },
         actors: {
             type: new GraphQLList(ActorType),
             resolve(parent, args){
-                return Actor.find();
+                return Actor.find({});
             }
         }
     }
@@ -117,7 +117,6 @@ const Mutation = new GraphQLObjectType({
                 return movie.save();
             }
         }
-        //To-DO CRUD operations for Actor and Movie
     }
 
 });
