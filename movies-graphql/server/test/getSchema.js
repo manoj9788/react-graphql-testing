@@ -1,5 +1,5 @@
 const HttpLink = require('apollo-link-http').HttpLink;
-const fetch = require('node-fetch');
+const fetch = require('isomorphic-fetch');
 const introspectSchema = require('graphql-tools').introspectSchema;
 const { getIntrospectionQuery, buildClientSchema, graphql } = require('graphql')
 

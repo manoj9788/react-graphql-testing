@@ -33,5 +33,19 @@
    type Mutation {
    addMovie(id: String!, name: String!, genre: String): Movie
    addActor(name: String!, age: Int!): Actor
-
    }
+
+   subscription {    
+    movies {    
+        id    
+        name    
+        genre    
+        actor{
+           name
+        }    
+    }
+   }
+
+
+
+

@@ -102,3 +102,4 @@ dist
 
 # TernJS port file
 .tern-port
+movies-graphql/server/test/mock.test.js

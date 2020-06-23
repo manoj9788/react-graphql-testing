@@ -4,7 +4,6 @@ const schema = require('./schema/schema')
 const mongoose = require('mongoose')
 const { tracing, fieldResolver } = require('easygraphql-tracing');
 
-
 const app = express();
 app.use(tracing)
 
