@@ -29,6 +29,6 @@
   "devDependencies": {
     "easygraphql-tester": "^5.1.6",
     "easygraphql-tracing": "0.0.3",
-    "mocha": "^7.2.0"
+    "mocha": "^10.2.0"
   }
 }
